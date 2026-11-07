@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Học Tập · BITVIET Studio</title>
+  <meta name="theme-color" content="#F3E8FF">
+  <meta name="color-scheme" content="light">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&family=Caveat:wght@600;700&family=Comfortaa:wght@600;700&family=Dancing+Script:wght@700&family=Fredoka:wght@500;600;700&family=Lobster&family=Montserrat:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&family=Open+Sans:wght@600;700&family=Pacifico&family=Quicksand:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <style>
+:root{--a1:#8B5CF6;--a2:#EC4899}
+*{-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font,'Quicksand'),'Nunito',sans-serif;background:#F3E8FF;color:#1E293B;-webkit-text-size-adjust:100%}
+body.min-h-screen{min-height:100vh;min-height:100dvh}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--a1);outline-offset:2px}
+.blobs{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(max(46vw,280px) max(46vw,280px) at 6% 4%,rgba(167,139,250,.55),transparent 70%),radial-gradient(max(40vw,250px) max(40vw,250px) at 94% 32%,rgba(249,168,212,.5),transparent 70%),radial-gradient(max(36vw,240px) max(36vw,240px) at 46% 98%,rgba(125,211,252,.5),transparent 70%),linear-gradient(135deg,#E0E7FF 0%,#F3E8FF 48%,#FCE7F3 100%)}
+.blobs i{display:none}
+@media (hover:hover) and (pointer:fine){.blobs i{display:block;position:absolute;border-radius:50%;opacity:.5;will-change:transform;animation:drift 32s ease-in-out infinite alternate}.blobs i:nth-child(1){width:34vw;height:34vw;left:12vw;top:8vh;background:radial-gradient(closest-side,rgba(196,181,253,.9),transparent)}.blobs i:nth-child(2){width:30vw;height:30vw;right:6vw;top:42vh;background:radial-gradient(closest-side,rgba(251,207,232,.9),transparent);animation-delay:-11s}.blobs i:nth-child(3){width:28vw;height:28vw;left:38vw;bottom:-6vh;background:radial-gradient(closest-side,rgba(186,230,253,.9),transparent);animation-delay:-20s}}
+@keyframes drift{to{transform:translate(5vw,4vh) scale(1.1)}}
+.no-scrollbar::-webkit-scrollbar{display:none}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+.custom-scrollbar::-webkit-scrollbar{width:6px;height:6px}
+.custom-scrollbar::-webkit-scrollbar-track{background:rgba(255,255,255,.3);border-radius:9999px}
+.custom-scrollbar::-webkit-scrollbar-thumb{background:rgba(167,139,250,.6);border-radius:9999px}
+.glass,.glass-card{isolation:isolate;background:linear-gradient(140deg,rgba(255,255,255,.7),rgba(255,255,255,.3));-webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);border:1px solid rgba(255,255,255,.7);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -1.5px 2px rgba(139,92,246,.14),inset 0 0 28px rgba(255,255,255,.3),0 26px 60px -20px rgba(109,40,217,.32),0 2px 8px rgba(15,23,42,.05)}
+.glass::before,.glass-card::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 70%,rgba(255,255,255,.28) 100%)}
+.glass-card{position:relative;border-radius:28px}
+.glass-card [class*="bg-white"],.glass-card [class*="bg-purple-50"],.glass-card [class*="bg-slate-50"],.glass-card [class*="bg-slate-100"]{background-color:rgba(255,255,255,.45)!important}
+#add-counter-modal>div{background:rgba(255,255,255,.72)!important;-webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);box-shadow:inset 0 1.5px 1px #fff,0 30px 70px -20px rgba(76,29,149,.45)}
+.tabbar{position:relative;border-radius:9999px;padding:6px;overflow-x:auto;overscroll-behavior-x:contain}
+.tab-track{position:relative;display:flex;gap:2px;width:max-content;min-width:100%}
+.tab-thumb{position:absolute;top:0;left:0;height:100%;width:0;border-radius:9999px;pointer-events:none;background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:inset 0 1.5px 1px rgba(255,255,255,.75),inset 0 -2px 5px rgba(0,0,0,.14),0 8px 22px -4px rgba(139,92,246,.55);transition:transform .55s cubic-bezier(.34,1.45,.5,1),width .55s cubic-bezier(.34,1.45,.5,1);will-change:transform,width}
+.tab-thumb::after{content:'';position:absolute;inset:1px 10% auto;height:46%;border-radius:9999px;background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,0))}
+.pill-tab{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:9999px;font-weight:800;font-size:13px;white-space:nowrap;cursor:pointer;user-select:none;color:#64748B;transition:color .3s}
+@media(hover:hover){.pill-tab:hover{color:#7C3AED}}
+.pill-tab-active,.pill-tab-active:hover{color:#fff!important}
+.btn{border-radius:9999px;padding:9px 16px;font-weight:800;font-size:12px;color:#6D28D9;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 #fff,0 4px 12px -4px rgba(109,40,217,.25);transition:transform .2s,background .2s}
+@media(hover:hover){.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.85)}}
+.btn:active{transform:scale(.96)}
+.btn.pri{color:#fff;border-color:rgba(255,255,255,.5);background:linear-gradient(135deg,var(--a1),var(--a2))}
+.inp{width:100%;min-width:0;border-radius:9999px;padding:10px 16px;font-weight:700;font-size:13px;color:#1E293B;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 3px rgba(109,40,217,.08);outline:none}
+.inp:focus{box-shadow:0 0 0 4px rgba(139,92,246,.2)}
+.lbl{display:block;font-size:11px;font-weight:800;color:#64748B;margin-bottom:6px}
+.chip{border-radius:9999px;padding:7px 13px;font-size:11px;font-weight:800;color:#6D28D9;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.85);transition:.25s}
+.chip.on{color:#fff;background:linear-gradient(135deg,var(--a1),var(--a2))}
+.sw{appearance:none;-webkit-appearance:none;width:44px;height:25px;border-radius:99px;background:rgba(100,116,139,.35);position:relative;flex:none;transition:.25s;cursor:pointer}
+.sw:before{content:'';position:absolute;left:3px;top:3px;width:19px;height:19px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:.25s}
+.sw:checked{background:linear-gradient(135deg,var(--a1),var(--a2))}
+.sw:checked:before{left:22px}
+.metric{border-radius:18px;padding:12px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.85)}
+.metric span{display:block;font-size:10px;font-weight:800;color:#64748B;margin-bottom:4px}
+.metric strong{font-size:16px;font-weight:900;color:#6D28D9}
+.binary{font-family:'DM Mono',monospace;color:#6D28D9;line-height:2;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+.binary.empty{color:#94A3B8}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:7px;max-height:420px;overflow:auto;padding:4px 6px 8px 2px}
+.swatch{position:relative;aspect-ratio:1;border-radius:11px;border:1px solid rgba(255,255,255,.8);box-shadow:0 2px 6px rgba(15,23,42,.12);transition:transform .15s}
+@media(hover:hover){.swatch:hover{transform:scale(1.15);z-index:2;outline:2px solid #fff;outline-offset:1px}}
+.swatch.selected{outline:2px solid var(--a1);outline-offset:2px}
+.swatch[aria-label]:hover:after{content:attr(aria-label);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1E1B4B;color:#fff;padding:5px 8px;border-radius:8px;font:10px 'DM Mono',monospace;white-space:nowrap;z-index:5;pointer-events:none}
+.picked-chip{width:30px;height:30px;border-radius:10px;border:1px solid rgba(255,255,255,.8);box-shadow:0 2px 6px rgba(15,23,42,.15);flex:none}
+.chars-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px;max-height:480px;overflow:auto;padding:4px 6px 8px 2px}
+.cc{height:46px;border-radius:14px;font-size:20px;color:#1E293B;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 #fff;transition:transform .15s,background .15s}
+@media(hover:hover){.cc:hover{transform:scale(1.2);background:#fff;position:relative;z-index:2}}
+.cc:active{transform:scale(.92)}
+.preview{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;flex-direction:column;gap:22px;padding:24px}
+.preview.show{display:flex}
+.preview-meta{display:flex;align-items:center;gap:12px;padding:13px 18px;border-radius:99px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(24px) saturate(190%);backdrop-filter:blur(24px) saturate(190%);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.preview-meta strong{font-family:'DM Mono',monospace}
+.preview-close{position:absolute;top:22px;right:22px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:#fff;border:1px solid rgba(255,255,255,.6);font-size:22px}
+.preview-hint{font-size:11px;color:rgba(255,255,255,.9);text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 20px;border-radius:9999px;font-size:12px;font-weight:800;color:#4C1D95;z-index:80;transition:.3s cubic-bezier(.34,1.4,.5,1);background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(20px) saturate(190%);backdrop-filter:blur(20px) saturate(190%);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 1px #fff,0 14px 34px -10px rgba(76,29,149,.4)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.format-painter-active{animation:pulseHighlight 1.2s infinite alternate;border-color:#EC4899!important;background-color:#FCE7F3!important;color:#BE185D!important}
+@keyframes pulseHighlight{from{box-shadow:0 0 6px #EC4899}to{box-shadow:0 0 18px #8B5CF6}}
+.editor-wrapper{position:relative}
+.editor-watermark{position:absolute;top:20px;left:24px;right:24px;pointer-events:none;color:#94A3B8;opacity:.45;font-weight:600;line-height:1.6;user-select:none;z-index:0;transition:opacity .2s ease}
+.editor-content{position:relative;z-index:10;background:transparent}
+.out{border-radius:18px;padding:12px 14px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.85);font-weight:700;font-size:13px;line-height:1.8;color:#4C1D95;word-break:break-word}
+.meter{height:10px;border-radius:99px;background:rgba(100,116,139,.2);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:99px;transition:width .4s,background .4s}
+.term{font-family:'DM Mono',monospace;background:rgba(15,23,42,.9);color:#86EFAC;border-radius:20px;padding:16px;font-size:12.5px;line-height:1.7;min-height:130px;white-space:pre-wrap;word-break:break-all;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+input[type=range]{accent-color:var(--a1)}
+@supports (color:color-mix(in srgb,red 50%,blue)){.tab-thumb{box-shadow:inset 0 1.5px 1px rgba(255,255,255,.75),inset 0 -2px 5px rgba(0,0,0,.14),0 8px 22px -4px color-mix(in srgb,var(--a1) 65%,transparent)}}
+@media (pointer:coarse){.glass,.glass-card{-webkit-backdrop-filter:blur(14px) saturate(170%);backdrop-filter:blur(14px) saturate(170%);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -1.5px 2px rgba(139,92,246,.14),inset 0 0 20px rgba(255,255,255,.3),0 14px 30px -16px rgba(109,40,217,.3)}}
+.tabbar.glass{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(140deg,rgba(255,255,255,.55),rgba(255,255,255,.25))}
+button,select,input,label,.chip,.cc,.swatch,.pill-tab{touch-action:manipulation}
+.cc{content-visibility:auto;contain-intrinsic-size:46px 46px}
+input[type=color]{width:100%;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.5);padding:3px;cursor:pointer}
+.qr-pre{width:40px;height:40px;border-radius:13px;border:2px solid #fff;box-shadow:0 3px 8px rgba(15,23,42,.2);transition:transform .15s}
+.qr-pre:active{transform:scale(.9)}
+#qr-cv{display:block;width:100%;max-width:340px;aspect-ratio:1;margin:0 auto;border-radius:22px;box-shadow:0 14px 36px -14px rgba(109,40,217,.4)}
+.mdl{position:fixed;inset:0;z-index:85;display:none;align-items:center;justify-content:center;padding:12px;background:rgba(30,27,75,.4)}
+.mdl.open{display:flex}
+#bug-modal{z-index:90}
+@media(max-width:639px){#font-modal{align-items:flex-end}}
+.fm-i{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:12px;font-weight:800;font-size:13px;color:#4C1D95;background:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.8)}
+.fm-i.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff}
+.tcard{perspective:800px;cursor:pointer}
+.tinner{position:relative;aspect-ratio:2/3.1;transition:transform .7s cubic-bezier(.3,.1,.2,1);transform-style:preserve-3d}
+.tcard.flip .tinner{transform:rotateY(180deg)}
+.tb,.tf{position:absolute;inset:0;border-radius:16px;-webkit-backface-visibility:hidden;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;border:2px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 10px 24px -10px rgba(76,29,149,.45)}
+.tb{background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.45) 0 9%,transparent 10%),repeating-linear-gradient(45deg,rgba(255,255,255,.14) 0 6px,transparent 6px 12px),linear-gradient(145deg,var(--a1),var(--a2));color:#fff;font-size:28px}
+.tf{transform:rotateY(180deg);background:linear-gradient(160deg,#fff,#F5F3FF);padding:8px;text-align:center}
+.trot{display:flex;flex-direction:column;align-items:center;gap:5px}
+.trot.rev{transform:rotate(180deg)}
+.trot b{font-size:36px;line-height:1}
+.trot span{font-size:11px;font-weight:900;color:#4C1D95}
+.trot small{font-size:9px;font-weight:800;color:#94A3B8}
+.tpos{margin-top:6px;text-align:center;font-size:10px;font-weight:900;color:#64748B}
+@keyframes dealIn{from{opacity:0;transform:translateY(20px) scale(.92)}to{opacity:1;transform:none}}
+.deal{animation:dealIn .45s both}
+.tb-on{background-image:linear-gradient(135deg,var(--a1),var(--a2))!important;color:#fff!important;border-color:var(--a1)!important;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6),0 6px 14px -6px rgba(109,40,217,.7)!important}
+#sec-editor button[onclick^="execCmd("]{transition:background-image .15s,box-shadow .15s,color .15s}
+@media(prefers-reduced-motion:reduce){.blobs i{animation:none}.tab-thumb{transition:none}}
+</style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-purple-200 selection:text-purple-900">
+  <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="sticky top-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-500 via-pink-500 to-rose-400 flex items-center justify-center text-white text-xl font-black shadow-md shadow-purple-200">✨</div>
+        <div>
+          <h1 class="text-xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 bg-clip-text text-transparent tracking-tight">BITVIET Studio</h1>
+          <p class="text-[11px] font-extrabold text-purple-400 tracking-wide">Bộ tiện ích cho bạn</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="px-3 py-1 rounded-full bg-white/60 text-purple-700 text-xs font-black border border-white/80 hidden sm:inline-block"></span>
+        <button id="sound-btn" data-silent="1" onclick="toggleSound()" class="btn !px-3.5 text-base" title="Bật / tắt âm thanh giao diện">🔊</button>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3">
+      <nav id="tabbar" class="tabbar glass no-scrollbar" role="tablist" aria-label="Chọn tính năng">
+        <div class="tab-track" id="tab-track"><span class="tab-thumb" id="tab-thumb"></span>
+<button onclick="switchMainTab('editor')" id="tab-btn-editor" class="pill-tab" role="tab"><span>📝</span><span>Soạn Thảo Văn Bản</span></button>
+<button onclick="switchMainTab('currency')" id="tab-btn-currency" class="pill-tab" role="tab"><span>🔀</span><span>Quy Đổi Tiền Tệ</span></button>
+<button onclick="switchMainTab('calendar')" id="tab-btn-calendar" class="pill-tab" role="tab"><span>📅</span><span>Lịch Âm Dương</span></button>
+<button onclick="switchMainTab('counter')" id="tab-btn-counter" class="pill-tab" role="tab"><span>⏳</span><span>Đếm Ngày Sự Kiện</span></button>
+<button onclick="switchMainTab('audio')" id="tab-btn-audio" class="pill-tab" role="tab"><span>🎵</span><span>Sóng Âm & Xuất Video</span></button>
+<button onclick="switchMainTab('sfx')" id="tab-btn-sfx" class="pill-tab" role="tab"><span>🔊</span><span>Thư Viện Âm Thanh</span></button>
+<button onclick="switchMainTab('plant')" id="tab-btn-plant" class="pill-tab" role="tab"><span>🌿</span><span>Tra Cứu Thực Vật AI</span></button>
+<button onclick="switchMainTab('utils')" id="tab-btn-utils" class="pill-tab" role="tab"><span>📱</span><span>Mã QR & Tiện Ích</span></button>
+<button onclick="switchMainTab('bits')" id="tab-btn-bits" class="pill-tab" role="tab"><span>🔢</span><span>Mã Nhị Phân</span></button>
+<button onclick="switchMainTab('colors')" id="tab-btn-colors" class="pill-tab" role="tab"><span>🎨</span><span>Phòng Màu HEX</span></button>
+<button onclick="switchMainTab('chars')" id="tab-btn-chars" class="pill-tab" role="tab"><span>✳️</span><span>Ký Tự Đặc Biệt</span></button>
+<button onclick="switchMainTab('qr')" id="tab-btn-qr" class="pill-tab" role="tab"><span>🔳</span><span>Tạo Mã QR</span></button>
+<button onclick="switchMainTab('fortune')" id="tab-btn-fortune" class="pill-tab" role="tab"><span>🔮</span><span>Bói & Tarot</span></button>
+<button onclick="switchMainTab('pass')" id="tab-btn-pass" class="pill-tab" role="tab"><span>🔐</span><span>Kiểm Tra Mật Khẩu</span></button>
+<button onclick="switchMainTab('study')" id="tab-btn-study" class="pill-tab pill-tab-active" role="tab"><span>📚</span><span>Học tập</span></button>
+<button onclick="switchMainTab('ques')" id="tab-btn-ques" class="pill-tab" role="tab"><span>🧩</span><span>Câu đố</span></button>
+<button onclick="switchMainTab('more')" id="tab-btn-more" class="pill-tab" role="tab"><span>🧰</span><span>Khác</span></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <section id="sec-study" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card p-6 sm:p-8 space-y-5">
+          <div><h2 class="text-2xl font-black text-slate-800 flex items-center gap-2"><span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-base">⏱️</span>Tập Trung Pomodoro</h2><p class="text-xs text-slate-500 font-bold mt-1">Học theo từng phiên ngắn, xen kẽ giờ nghỉ để đầu óc luôn tỉnh táo</p></div>
+          <div id="pm-presets" class="flex flex-wrap gap-2"></div>
+          <div class="text-center space-y-2 py-2"><div id="pm-mode" class="lbl !mb-0"></div><div id="pm-time" class="text-6xl font-black" style="font-family:'DM Mono',monospace;color:#6D28D9"></div></div>
+          <div class="meter"><i id="pm-bar" style="background:linear-gradient(90deg,var(--a1),var(--a2))"></i></div>
+          <div class="flex gap-2"><button id="pm-go" class="btn pri flex-1"></button><button id="pm-reset" class="btn" aria-label="Đặt lại">↺</button></div>
+          <div class="grid grid-cols-2 gap-3"><div class="metric"><span>HÔM NAY</span><strong id="pm-today"></strong></div><div class="metric"><span>TỔNG THỜI GIAN</span><strong id="pm-min"></strong></div></div>
+        </div>
+        <div class="glass-card p-6 sm:p-8 space-y-5">
+          <div><h2 class="text-2xl font-black text-slate-800 flex items-center gap-2"><span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-base">🃏</span>Thẻ Ghi Nhớ</h2><p id="fc-stat" class="text-xs text-slate-500 font-bold mt-1"></p></div>
+          <div id="fc-card" class="rounded-3xl bg-white/40 border border-white/80 p-5 min-h-[150px]"></div>
+          <div id="fc-btns" class="flex gap-2"></div>
+          <div class="space-y-2">
+            <input id="fc-f" class="inp" placeholder="Mặt trước: câu hỏi / từ khoá" maxlength="200" autocomplete="off">
+            <input id="fc-k" class="inp" placeholder="Mặt sau: đáp án / giải nghĩa" maxlength="300" autocomplete="off">
+            <button id="fc-add" class="btn pri w-full">＋ Thêm thẻ</button>
+          </div>
+          <div id="fc-list" class="max-h-48 overflow-auto custom-scrollbar space-y-1.5"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-5 pt-1 flex items-end justify-between gap-3 flex-wrap">
+    <button id="bug-open" class="btn" aria-haspopup="dialog">🐞 Báo cáo lỗi</button>
+    <div class="text-right text-[10px] leading-snug font-bold text-slate-400 select-none"><div>Designed and operated by DECOX Teams</div><div>©Bảo lưu mọi quyền</div><div>© DECOX Teams 2026</div></div>
+  </footer>
+
+  <div id="bug-modal" class="mdl">
+    <div class="glass-card w-full p-6 space-y-3" style="max-width:28rem;max-height:92vh;overflow:auto" role="dialog" aria-modal="true" aria-label="Báo cáo lỗi">
+      <div class="flex items-start justify-between gap-3"><div><h3 class="text-xl font-black text-slate-800">🐞 Báo cáo lỗi</h3><p class="text-xs font-bold text-slate-500 mt-1">Cho chúng mình biết bạn gặp lỗi gì nhé. Báo cáo sẽ được gửi tới DECOX Teams.</p></div><button id="bug-close" class="btn !px-3" aria-label="Đóng">✕</button></div>
+      <div><label class="lbl" for="bug-email">Email của bạn <span class="text-rose-500">* bắt buộc</span></label><input id="bug-email" type="email" class="inp" placeholder="ten@email.com" autocomplete="email" required></div>
+      <div><label class="lbl" for="bug-type">Loại lỗi</label><select id="bug-type" class="inp"><option>Tính năng không hoạt động</option><option>Lỗi hiển thị / giao diện</option><option>Lỗi trên điện thoại Android</option><option>Chậm / giật</option><option>Góp ý khác</option></select></div>
+      <div><label class="lbl" for="bug-desc">Mô tả lỗi <span class="text-rose-500">*</span></label><textarea id="bug-desc" class="inp !rounded-3xl min-h-[110px]" placeholder="Bạn bấm vào đâu, chuyện gì xảy ra, bạn mong muốn điều gì..."></textarea></div>
+      <input id="bug-hp" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white/50 border border-white/80 cursor-pointer text-xs font-black text-slate-700">Đính kèm thông tin thiết bị để dễ sửa lỗi<input type="checkbox" id="bug-info" class="sw" checked></label>
+      <div id="bug-status" class="text-xs font-black"></div>
+      <div class="text-center"><a id="bug-fallback" class="btn hidden" href="#">✉️ Gửi bằng ứng dụng Email</a></div>
+      <div class="flex gap-2"><button id="bug-send" class="btn pri flex-1">Gửi báo cáo</button><button class="btn" onclick="bugClose()">Hủy</button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+
+<script>
+const $=id=>document.getElementById(id);
+const PAGE='study';let currentTab=PAGE;
+let soundOn=true,sfxVol=.8,lastHover=null;
+try{soundOn=localStorage.getItem('bv_sound')!=='0'}catch(e){}
+const LS = {
+  g: (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  s: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+const BUG_TO = 'decoxapps@gmail.com', BUG_CC = 'minhmeitv212@gmail.com';
+    const seq = (w, f, s, d, v) => f.map((x, i) => [w, x, 0, i * s, d, v]);
+    const noi = (f, t, d, v, f1) => ['noise', f, f1 || 0, t, d, v];
+    const SFX = {
+      chime: ['Tiếng Tinh Tinh', '🔔', 'Chuông báo nhẹ nhàng', seq('sine', [523.25, 659.25, 783.99, 1046.5], .08, .4, .3)],
+      doorbell: ['Tiếng Chuông Cửa', '🚪', 'Ding-dong chuông cửa', seq('sine', [659.25, 523.25], .35, .6, .4)],
+      pop: ['Tiếng Bong Bóng', '🎈', 'Bong bóng nổ nhẹ', [['sine', 350, 850, 0, .07, .5]]],
+      victory: ['Tiếng Chiến Thắng', '🏆', 'Kèn mừng chiến thắng', seq('sine', [440, 554.37, 659.25, 880], .1, .3, .3)],
+      jump: ['Tiếng Nhảy Game', '🦘', 'Bước nhảy kiểu 8-bit', [['sine', 150, 600, 0, .15, .4]]],
+      coin: ['Tiếng Đồng Xu', '🪙', 'Nhặt đồng xu', [['sine', 987.77, 0, 0, .08, .4], ['sine', 1318.51, 0, .08, .3, .4]]],
+      magic: ['Tiếng Phép Thuật', '🪄', 'Đũa phép lấp lánh', seq('sine', [600, 750, 900, 1050, 1200, 1350, 1500], .04, .12, .2)],
+      beep: ['Tiếng Cảnh Báo', '👾', 'Bíp cảnh báo', [['square', 880, 0, 0, .12, .2]]],
+      applause: ['Tiếng Vỗ Tay', '👏', 'Vỗ tay rào rào', Array.from({ length: 12 }, (_, i) => noi(1800 + (i * 337) % 2500, i * .05, .07, .35))],
+      laser: ['Tiếng Tia Laser', '⚡', 'Tia laser vút qua', [['sawtooth', 1200, 150, 0, .12, .3]]],
+      tap: ['Tiếng Chạm', '👆', 'Chạm nhẹ vào nút', [['sine', 900, 500, 0, .05, .25]]],
+      tick: ['Tiếng Tích Tắc', '⏱️', 'Tích khẽ khi rê chuột', [['triangle', 1800, 0, 0, .025, .08]]],
+      swipe: ['Tiếng Trượt Tab', '🌀', 'Vút nhẹ khi trượt tab', [noi(600, 0, .18, .12, 2600), ['sine', 420, 880, 0, .14, .1]]],
+      toast: ['Tiếng Thông Báo Nhỏ', '💬', 'Thông báo thoáng qua', seq('sine', [880, 1174.66], .07, .18, .18)],
+      success: ['Tiếng Thành Công', '✅', 'Hoàn tất thành công', seq('triangle', [523.25, 659.25, 783.99], .09, .3, .28)],
+      error: ['Tiếng Báo Lỗi', '❌', 'Bíp thấp báo lỗi', seq('square', [300, 220], .12, .18, .2)],
+      copy: ['Tiếng Sao Chép', '📋', 'Sao chép gọn gàng', [['sine', 1200, 0, 0, .04, .25], ['sine', 1600, 0, .05, .07, .25]]],
+      whoosh: ['Tiếng Vèo', '💨', 'Gió vút qua', [noi(300, 0, .5, .4, 3000)]],
+      drop: ['Tiếng Giọt Nước', '💧', 'Giọt nước rơi', [['sine', 1400, 300, 0, .18, .4]]],
+      bubble: ['Tiếng Bọt Khí', '🫧', 'Bọt khí nổi lên', [['sine', 300, 900, 0, .12, .35], ['sine', 400, 1100, .1, .1, .3]]],
+      heart: ['Tiếng Tim Đập', '💓', 'Thình thịch', [['sine', 90, 50, 0, .14, .7], ['sine', 80, 45, .18, .18, .7]]],
+      bell: ['Tiếng Chuông Ngân', '🛎️', 'Chuông ngân dài', [['sine', 880, 0, 0, 1.2, .3], ['sine', 2217, 0, 0, .8, .12], ['sine', 3520, 0, 0, .5, .06]]],
+      xylo: ['Tiếng Mộc Cầm', '🎹', 'Thang âm đi lên', seq('triangle', [523.25, 587.33, 659.25, 698.46, 783.99, 880, 987.77, 1046.5], .07, .25, .28)],
+      powerup: ['Tiếng Tăng Sức Mạnh', '🍄', 'Lên sức kiểu game', seq('square', [261.63, 329.63, 392, 523.25, 659.25, 783.99, 1046.5], .06, .1, .15)],
+      levelup: ['Tiếng Lên Cấp', '🆙', 'Kèn lên cấp', seq('square', [523.25, 523.25, 523.25, 659.25, 783.99], .1, .14, .16)],
+      gameover: ['Tiếng Thua Cuộc', '💀', 'Giai điệu đi xuống', seq('sawtooth', [392, 370, 349.23, 311.13], .18, .3, .2)],
+      explosion: ['Tiếng Nổ', '💥', 'Tiếng nổ trầm', [noi(900, 0, .8, .7, 60), ['sine', 120, 30, 0, .6, .6]]],
+      camera: ['Tiếng Chụp Ảnh', '📷', 'Tách tách máy ảnh', [noi(3500, 0, .03, .5), noi(2500, .06, .05, .5)]],
+      typewriter: ['Tiếng Gõ Phím', '⌨️', 'Lách cách bàn phím', [noi(3000, 0, .02, .5), noi(2200, .1, .02, .5), noi(2800, .2, .02, .5), noi(1500, .32, .05, .5)]],
+      sparkle: ['Tiếng Lấp Lánh', '✨', 'Ánh sao lấp lánh', [1, 2, 3, 4, 5, 6, 7, 8].map(i => ['sine', 1800 + i * 370, 0, i * .045, .15, .14])],
+      harp: ['Tiếng Đàn Hạc', '🪕', 'Rải hợp âm', seq('sine', [261.63, 329.63, 392, 523.25, 659.25, 783.99], .09, .7, .22)],
+      alarm: ['Tiếng Báo Thức', '⏰', 'Reo reo báo thức', seq('square', [1000, 800, 1000, 800, 1000, 800], .12, .1, .15)],
+      phone: ['Tiếng Điện Thoại Reo', '📞', 'Chuông điện thoại', seq('sine', [1400, 1700, 1400, 1700], .07, .06, .2).concat(seq('sine', [1400, 1700, 1400, 1700], .07, .06, .2).map(v => [v[0], v[1], v[2], v[3] + .5, v[4], v[5]]))],
+      bird: ['Tiếng Chim Hót', '🐦', 'Chim líu lo', [['sine', 2400, 3600, 0, .08, .2], ['sine', 3000, 4200, .12, .08, .2], ['sine', 2600, 3800, .24, .1, .2]]],
+      zap: ['Tiếng Điện Xẹt', '🔌', 'Tia điện xẹt', [['sawtooth', 2000, 200, 0, .2, .2], noi(4000, 0, .2, .25, 800)]],
+      drum: ['Tiếng Trống', '🥁', 'Tùng tùng', [['sine', 160, 50, 0, .25, .8], ['sine', 200, 60, .25, .25, .8], noi(1800, .5, .2, .4)]],
+      cat: ['Tiếng Mèo Kêu', '🐱', 'Meo meo', [['triangle', 700, 1100, 0, .2, .25], ['triangle', 1100, 600, .2, .25, .25]]],
+      ufo: ['Tiếng Đĩa Bay', '🛸', 'Âm thanh ngoài hành tinh', [['sine', 400, 900, 0, .6, .2], ['sine', 900, 400, .6, .6, .2]]]
+    };
+
+    let sfxAudioCtx = null;
+    function getSFXCtx() {
+      if (!sfxAudioCtx) sfxAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (sfxAudioCtx.state === 'suspended') sfxAudioCtx.resume();
+      return sfxAudioCtx;
+    }
+
+    const noiseCache = new WeakMap();
+
+    function noiseBuf(c) {
+      let b = noiseCache.get(c);
+      if (!b) {
+        b = c.createBuffer(1, c.sampleRate, c.sampleRate);
+        const o = b.getChannelData(0);
+        for (let i = 0; i < o.length; i++) o[i] = Math.random() * 2 - 1;
+        noiseCache.set(c, b);
+      }
+      return b;
+    }
+
+    function synthSFX(c, type, now, dest) {
+      const def = SFX[type];
+      if (!def) return;
+      dest = dest || c.destination;
+      def[3].forEach(([w, f0, f1, t0, d, v]) => {
+        const g = c.createGain(), s = now + t0;
+        let src;
+        if (w === 'noise') {
+          src = c.createBufferSource();
+          src.buffer = noiseBuf(c);
+          const f = c.createBiquadFilter();
+          f.type = 'bandpass';
+          f.frequency.setValueAtTime(f0, s);
+          if (f1) f.frequency.exponentialRampToValueAtTime(f1, s + d);
+          src.connect(f);
+          f.connect(g);
+        } else {
+          src = c.createOscillator();
+          src.type = w;
+          src.frequency.setValueAtTime(f0, s);
+          if (f1) src.frequency.exponentialRampToValueAtTime(f1, s + d);
+          src.connect(g);
+        }
+        g.gain.setValueAtTime(v, s);
+        g.gain.exponentialRampToValueAtTime(.001, s + d);
+        g.connect(dest);
+        src.start(s);
+        src.stop(s + d);
+      });
+    }
+
+    function playSFXSynth(type) {
+      const c = getSFXCtx(), m = c.createGain();
+      m.gain.value = sfxVol;
+      m.connect(c.destination);
+      synthSFX(c, type, c.currentTime, m);
+    }
+
+function bugOpen() {
+  $('bug-status').textContent = '';
+  $('bug-fallback').classList.add('hidden');
+  $('bug-modal').classList.add('open');
+  setTimeout(() => $('bug-email').focus(), 60);
+}
+
+function bugClose() {
+  $('bug-modal').classList.remove('open');
+}
+
+function bugInfo() {
+  return `Tab đang mở: ${currentTab}\nMàn hình: ${screen.width}x${screen.height} (cửa sổ ${innerWidth}x${innerHeight}, DPR ${devicePixelRatio})\nTrình duyệt: ${navigator.userAgent}\nNgôn ngữ: ${navigator.language}\nThời gian: ${new Date().toString()}`;
+}
+
+async function bugSend() {
+  const email = $('bug-email').value.trim(), desc = $('bug-desc').value.trim(), type = $('bug-type').value, st = $('bug-status');
+  st.className = 'text-xs font-black text-rose-500';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { st.textContent = 'Vui lòng nhập email hợp lệ để chúng mình có thể phản hồi bạn.'; $('bug-email').focus(); return; }
+  if (desc.length < 10) { st.textContent = 'Hãy mô tả lỗi chi tiết hơn một chút (ít nhất 10 ký tự).'; $('bug-desc').focus(); return; }
+  if ($('bug-hp').value) return;
+  if (Date.now() - LS.g('bv_bug_t', 0) < 30000) { st.textContent = 'Bạn vừa gửi báo cáo xong, vui lòng đợi ít giây rồi gửi tiếp nhé.'; return; }
+  const info = $('bug-info').checked ? bugInfo() : 'Người dùng không đính kèm thông tin thiết bị';
+  const btn = $('bug-send');
+  btn.disabled = true;
+  st.className = 'text-xs font-black text-purple-600';
+  st.textContent = 'Đang gửi báo cáo…';
+  try {
+    const r = await fetch(`https://formsubmit.co/ajax/${BUG_TO}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _subject: `[BITVIET Studio] Báo lỗi: ${type}`, _cc: BUG_CC, _template: 'table', _captcha: 'false', email, 'Loại lỗi': type, 'Mô tả lỗi': desc, 'Thông tin thiết bị': info })
+    });
+    const j = await r.json();
+    if (!(r.ok && (j.success === 'true' || j.success === true))) throw new Error(j.message || 'fail');
+    LS.s('bv_bug_t', Date.now());
+    st.className = 'text-xs font-black text-emerald-600';
+    st.textContent = '✅ Đã gửi! Cảm ơn bạn, DECOX Teams sẽ phản hồi qua email của bạn.';
+    uiSound('success');
+    $('bug-desc').value = '';
+    setTimeout(bugClose, 2200);
+  } catch (e) {
+    st.className = 'text-xs font-black text-rose-500';
+    st.textContent = 'Chưa gửi tự động được (có thể do mạng hoặc hệ thống chưa kích hoạt). Bạn có thể gửi bằng ứng dụng Email bên dưới.';
+    const body = `Email người báo lỗi: ${email}\nLoại lỗi: ${type}\n\nMô tả:\n${desc}\n\n${info}`;
+    $('bug-fallback').href = `mailto:${BUG_TO}?cc=${BUG_CC}&subject=${encodeURIComponent(`[BITVIET Studio] Báo lỗi: ${type}`)}&body=${encodeURIComponent(body)}`;
+    $('bug-fallback').classList.remove('hidden');
+    uiSound('error');
+  }
+  btn.disabled = false;
+}
+function uiSound(n){if(soundOn)try{playSFXSynth(n)}catch(e){}}
+function toggleSound(){soundOn=!soundOn;try{localStorage.setItem('bv_sound',soundOn?'1':'0')}catch(e){}$('sound-btn').textContent=soundOn?'🔊':'🔇';if(soundOn)playSFXSynth('success')}
+function switchMainTab(t){if(t===PAGE)return;uiSound('swipe');const to=t==='study'?'study.html':t==='ques'?'ques.html':'index.html#'+t;setTimeout(()=>{location.href=to},130)}
+function moveThumb(){const b=$('tab-btn-'+currentTab),t=$('tab-thumb'),bar=$('tabbar');if(!b)return;t.style.width=b.offsetWidth+'px';t.style.transform='translateX('+b.offsetLeft+'px)';bar.scrollTo({left:b.offsetLeft-(bar.clientWidth-b.offsetWidth)/2,behavior:'smooth'})}
+window.addEventListener('resize',moveThumb);window.addEventListener('load',moveThumb);if(document.fonts)document.fonts.ready.then(moveThumb);
+$('sound-btn').textContent=soundOn?'🔊':'🔇';
+document.addEventListener('click',e=>{const t=e.target.closest('button,label,select');if(t&&!t.dataset.silent&&!t.classList.contains('pill-tab'))uiSound('tap')});
+document.addEventListener('pointerover',e=>{if(e.pointerType!=='mouse')return;const t=e.target.closest('.pill-tab');if(t&&t!==lastHover)uiSound('tick');lastHover=t});
+let toastTimer;function showToast(message,snd){uiSound(snd||'toast');const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2100)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('bug-open').onclick=bugOpen;$('bug-close').onclick=bugClose;$('bug-send').onclick=bugSend;
+$('bug-modal').addEventListener('click',e=>{if(e.target===$('bug-modal'))bugClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')bugClose()});
+
+/* ---- Pomodoro ---- */
+const PRE=[[25,5],[50,10],[15,3]];let pi=0,mode='focus',total=PRE[0][0]*60,left=total,timer=null,endAt=0;
+const st=LS.g('bv_study',{day:'',n:0,tot:0});
+const today=()=>new Date().toLocaleDateString('sv-SE');
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function pmStop(){clearInterval(timer);timer=null}
+function pmDraw(){
+  $('pm-time').textContent=fmt(left);
+  $('pm-mode').textContent=mode==='focus'?'🎯 TẬP TRUNG':'☕ NGHỈ NGƠI';
+  $('pm-bar').style.width=(100*(total-left)/total)+'%';
+  $('pm-go').textContent=timer?'⏸ Tạm dừng':'▶ Bắt đầu';
+  $('pm-today').textContent=(st.day===today()?st.n:0)+' phiên';
+  $('pm-min').textContent=st.tot+' phút';
+  document.title=(timer?fmt(left)+' · ':'')+'Học Tập · BITVIET Studio';
+}
+function pmSet(i){
+  pi=i;mode='focus';pmStop();total=left=PRE[i][0]*60;
+  $('pm-presets').innerHTML=PRE.map((p,k)=>`<button class="chip${k===i?' on':''}" data-i="${k}">${p[0]} / ${p[1]} phút</button>`).join('');
+  pmDraw();
+}
+function pmTick(){
+  left=Math.max(0,Math.round((endAt-Date.now())/1000));
+  if(left>0){pmDraw();return}
+  pmStop();
+  if(mode==='focus'){
+    if(st.day!==today()){st.day=today();st.n=0}
+    st.n++;st.tot+=PRE[pi][0];LS.s('bv_study',st);
+    mode='break';total=left=PRE[pi][1]*60;showToast('Xong một phiên! Nghỉ chút nhé ☕','levelup');
+  }else{
+    mode='focus';total=left=PRE[pi][0]*60;showToast('Hết giờ nghỉ, vào việc thôi 🎯','chime');
+  }
+  pmDraw();
+}
+$('pm-go').onclick=()=>{if(timer){pmStop();pmDraw();return}endAt=Date.now()+left*1000;timer=setInterval(pmTick,250);pmDraw()};
+$('pm-reset').onclick=()=>pmSet(pi);
+$('pm-presets').onclick=e=>{const b=e.target.closest('[data-i]');if(b)pmSet(+b.dataset.i)};
+pmSet(0);
+
+/* ---- Thẻ ghi nhớ ---- */
+let cards=LS.g('bv_cards',[]),cur=-1,shown=false;
+if(!Array.isArray(cards))cards=[];
+const fcSave=()=>LS.s('bv_cards',cards);
+function fcNext(){
+  if(!cards.length){cur=-1;fcDraw();return}
+  const w=cards.map((c,i)=>i===cur&&cards.length>1?0:4-c.b);
+  let r=Math.random()*w.reduce((x,y)=>x+y,0),n=0;
+  for(let i=0;i<w.length;i++){if((r-=w[i])<0){n=i;break}}
+  cur=n;shown=false;fcDraw();
+}
+function fcDraw(){
+  const c=cards[cur];
+  $('fc-card').innerHTML=c
+    ?`<div class="lbl">CÂU HỎI</div><div class="text-lg font-black text-slate-800 break-words">${esc(c.f)}</div>`+(shown?`<div class="lbl mt-4">ĐÁP ÁN</div><div class="text-lg font-black break-words" style="color:#6D28D9">${esc(c.k)}</div>`:'')
+    :'<div class="text-center text-xs font-bold text-slate-500 py-8">Chưa có thẻ nào. Thêm thẻ đầu tiên ở bên dưới nhé ✨</div>';
+  $('fc-btns').innerHTML=!c?'':shown
+    ?'<button class="btn flex-1" data-r="0">😵 Chưa nhớ</button><button class="btn pri flex-1" data-r="1">✅ Đã nhớ</button>'
+    :'<button class="btn pri flex-1" data-r="s">👀 Hiện đáp án</button>';
+  $('fc-stat').textContent=cards.length+' thẻ · '+cards.filter(x=>x.b>=3).length+' đã thuộc';
+  $('fc-list').innerHTML=cards.map((x,i)=>`<div class="flex items-center gap-2 p-2 pl-3 rounded-2xl bg-white/50 border border-white/80"><span class="flex-1 min-w-0 truncate text-xs font-black text-slate-700">${esc(x.f)} → ${esc(x.k)}</span><button class="btn !px-2.5 !py-1.5" data-d="${i}" aria-label="Xoá thẻ">✕</button></div>`).join('');
+}
+$('fc-btns').onclick=e=>{
+  const r=e.target.closest('[data-r]')?.dataset.r;if(r==null)return;
+  if(r==='s'){shown=true;fcDraw();return}
+  cards[cur].b=r==='1'?Math.min(3,cards[cur].b+1):0;fcSave();fcNext();
+};
+$('fc-list').onclick=e=>{
+  const d=e.target.closest('[data-d]');if(!d)return;
+  cards.splice(+d.dataset.d,1);fcSave();cur=-1;fcNext();
+};
+function fcAdd(){
+  const f=$('fc-f').value.trim(),k=$('fc-k').value.trim();
+  if(!f||!k){showToast('Hãy nhập đủ cả hai mặt của thẻ','error');return}
+  cards.push({f,k,b:0});fcSave();$('fc-f').value=$('fc-k').value='';$('fc-f').focus();
+  showToast('Đã thêm thẻ mới','success');
+  if(cur<0)fcNext();else fcDraw();
+}
+$('fc-add').onclick=fcAdd;
+$('fc-k').addEventListener('keydown',e=>{if(e.key==='Enter')fcAdd()});
+fcNext();
+</script>
+</body>
+</html>
