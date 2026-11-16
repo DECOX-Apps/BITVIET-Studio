@@ -130,11 +130,11 @@ input[type=color]{width:100%;height:42px;border-radius:14px;border:1px solid rgb
         <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-purple-500 via-pink-500 to-rose-400 flex items-center justify-center text-white text-xl font-black shadow-md shadow-purple-200">✨</div>
         <div>
           <h1 class="text-xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 bg-clip-text text-transparent tracking-tight">BITVIET Studio</h1>
-          <p class="text-[11px] font-extrabold text-purple-400 tracking-wide">Bộ tiện ích cho bạn</p>
+          <p class="text-[11px] font-extrabold text-purple-400 tracking-wide">Bộ tiện ích dễ thương</p>
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <span class="px-3 py-1 rounded-full bg-white/60 text-purple-700 text-xs font-black border border-white/80 hidden sm:inline-block"></span>
+        <span class="px-3 py-1 rounded-full bg-white/60 text-purple-700 text-xs font-black border border-white/80 hidden sm:inline-block">🌸 Phiên bản Dễ Thương 2026</span>
         <button id="sound-btn" data-silent="1" onclick="toggleSound()" class="btn !px-3.5 text-base" title="Bật / tắt âm thanh giao diện">🔊</button>
       </div>
     </div>
@@ -155,8 +155,6 @@ input[type=color]{width:100%;height:42px;border-radius:14px;border:1px solid rgb
 <button onclick="switchMainTab('qr')" id="tab-btn-qr" class="pill-tab" role="tab"><span>🔳</span><span>Tạo Mã QR</span></button>
 <button onclick="switchMainTab('fortune')" id="tab-btn-fortune" class="pill-tab" role="tab"><span>🔮</span><span>Bói & Tarot</span></button>
 <button onclick="switchMainTab('pass')" id="tab-btn-pass" class="pill-tab" role="tab"><span>🔐</span><span>Kiểm Tra Mật Khẩu</span></button>
-<button onclick="switchMainTab('study')" id="tab-btn-study" class="pill-tab" role="tab"><span>📚</span><span>Học tập</span></button>
-<button onclick="switchMainTab('ques')" id="tab-btn-ques" class="pill-tab" role="tab"><span>🧩</span><span>Câu đố</span></button>
 <button onclick="switchMainTab('more')" id="tab-btn-more" class="pill-tab" role="tab"><span>🧰</span><span>Khác</span></button>
         </div>
       </nav>
@@ -171,9 +169,9 @@ input[type=color]{width:100%;height:42px;border-radius:14px;border:1px solid rgb
           <div>
             <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2">
               <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-base">✏️</span>
-              Trình Soạn Thảo Văn Bản
+              Trình Soạn Thảo Văn Bản Dễ Thương
             </h2>
-            <p class="text-xs text-slate-500 font-bold mt-1">Đầy đủ phông chữ, định dạng Pt chuẩn & Sao chép định dạng tiện lợi</p>
+            <p class="text-xs text-slate-500 font-bold mt-1">Đầy đủ phông chữ cute, định dạng Pt chuẩn & Sao chép định dạng tiện lợi</p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
             <button onclick="toggleFormatPainter()" id="btn-format-painter" class="px-4 py-2.5 rounded-full border-2 border-purple-300 text-purple-700 bg-purple-50 hover:bg-purple-100 text-xs font-black transition flex items-center gap-2">
@@ -375,7 +373,7 @@ input[type=color]{width:100%;height:42px;border-radius:14px;border:1px solid rgb
             <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-black">📅</div>
             <div>
               <h3 class="text-xl sm:text-2xl font-black text-slate-900" id="cal-month-title">Tháng 10 / 2026</h3>
-              <p class="text-xs text-slate-500 font-bold">Lịch Âm Dương Việt Nam</p>
+              <p class="text-xs text-slate-500 font-bold">Lịch Âm Dương Việt Nam - Phong cách lịch Samsung</p>
             </div>
           </div>
 
@@ -799,10 +797,8 @@ input[type=color]{width:100%;height:42px;border-radius:14px;border:1px solid rgb
 
   <script>
     let currentTab = 'editor';
-    const PAGE_TABS = { study: 'study.html', ques: 'ques.html' };
 
     function switchMainTab(tabId) {
-      if (PAGE_TABS[tabId]) { uiSound('swipe'); setTimeout(() => { location.href = PAGE_TABS[tabId]; }, 130); return; }
       if (tabId !== currentTab) uiSound('swipe');
       currentTab = tabId;
       ALL_TABS.forEach(t => {
@@ -1944,7 +1940,7 @@ function moveThumb() {
   bar.addEventListener('pointermove', e => {
     if (!down) return;
     const b = document.elementFromPoint(e.clientX, e.clientY)?.closest('.pill-tab');
-    if (b && !PAGE_TABS[b.id.slice(8)]) switchMainTab(b.id.slice(8));
+    if (b) switchMainTab(b.id.slice(8));
   });
   window.addEventListener('resize', moveThumb);
   window.addEventListener('load', moveThumb);
@@ -3760,12 +3756,6 @@ function tbUpdate() {
 
 document.addEventListener('selectionchange', tbUpdate);
 ['keyup', 'input', 'pointerup'].forEach(ev => document.getElementById('editor-box').addEventListener(ev, tbUpdate));
-
-// Mở đúng tab khi quay về từ trang Học tập / Câu đố (index.html#tên-tab)
-(function () {
-  const h = location.hash.slice(1);
-  if (h && h !== currentTab && ALL_TABS.includes(h)) { const s = soundOn; soundOn = false; switchMainTab(h); soundOn = s; }
-})();
 </script>
 </body>
 </html>
